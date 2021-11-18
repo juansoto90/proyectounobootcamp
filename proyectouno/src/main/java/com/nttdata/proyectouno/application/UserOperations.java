@@ -1,15 +1,17 @@
 package com.nttdata.proyectouno.application;
 
 import com.nttdata.proyectouno.domain.User;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 public interface UserOperations {
 
-    public List<User> queryAll();
-    public User create(User user);
-    public User getUsername(String username);
-    public User update(String username, User user);
+    public Flux<User> queryAll();
+    public Mono<User> create(User user);
+    public Mono<User> getUser(String username);
+    public Mono<User> update(String username, User user);
     public void delete(String username);
 
 }

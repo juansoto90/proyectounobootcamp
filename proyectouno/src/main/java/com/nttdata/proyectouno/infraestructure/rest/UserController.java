@@ -34,22 +34,22 @@ public class UserController {
 
     @GetMapping
     public Flux<User> get(){
-        return Flux.fromIterable(userOperation.queryAll());
+        return userOperation.queryAll();
     }
 
     @GetMapping("/{username}")
     public Mono<User> getUsername(@PathVariable String username){
-        return Mono.justOrEmpty(userOperation.getUsername(username));
+        return userOperation.getUser(username);
     }
 
     @PostMapping
     public Mono<User> post(@RequestBody User entity){
-        return Mono.justOrEmpty(userOperation.create(entity)) ;
+        return userOperation.create(entity) ;
     }
 
     @PutMapping
     public Mono<User> put(@PathVariable String id, @RequestBody User entity){
-        return Mono.justOrEmpty(userOperation.update(id, entity));
+        return userOperation.update(id, entity);
     }
 
     @DeleteMapping

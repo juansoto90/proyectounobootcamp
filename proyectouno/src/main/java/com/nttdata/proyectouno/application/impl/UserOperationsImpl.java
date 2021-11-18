@@ -4,35 +4,41 @@ import com.nttdata.proyectouno.application.UserOperations;
 import com.nttdata.proyectouno.application.model.UserRepository;
 import com.nttdata.proyectouno.domain.User;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class UserOperationsImpl implements UserOperations {
 
-    @Autowired
-    UserRepository repository;
+    /*@Autowired
+    UserRepository repository;*/
+
+    private final UserRepository repository;
 
     @Override
-    public List<User> queryAll() {
+    public Flux<User> queryAll() {
         return repository.getAll();
     }
 
     @Override
-    public User getUsername(String username) {
-        return repository.getUsername(username);
+    public Mono<User> getUser(String username) {
+        return repository.getUser(username);
     }
 
     @Override
-    public User create(User user) {
-        // TODO Auto-generated method stub
-        return null;
+    public Mono<User> create(User user) {
+        return repository.save(user);
     }
 
     @Override
-    public User update(String username, User use) {
+    public Mono<User> update(String username, User use) {
         // TODO Auto-generated method stub
         return null;
     }

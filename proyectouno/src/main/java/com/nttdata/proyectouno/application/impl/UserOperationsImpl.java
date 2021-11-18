@@ -46,8 +46,6 @@ public class UserOperationsImpl implements UserOperations {
     @Override
     public void delete(String username) {
         // TODO Auto-generated method stub
-        
     }
-    
-    
+
 }
